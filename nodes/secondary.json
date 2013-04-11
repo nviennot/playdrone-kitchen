@@ -1,0 +1,21 @@
+{
+  "run_list": [
+    "recipe[base]",
+    //"recipe[ssd]",
+    "role[oracle_jdk_7]"
+    // "role[bootstrap]",
+    // "role[mongodb]"
+    // "recipe[dotfiles]"
+    // "recipe[ssd]"
+    // "recipe[mongodb::10gen_repo]",
+    // "recipe[mongodb]",
+    // "recipe[java]",
+    // "recipe[elasticsearch]",
+    // "recipe[rvm]"
+   ]
+
+  // "elasticsearch" : {
+    // "cluster_name" : "elasticsearch_test_with_chef",
+    // "mlockall"     : false
+  // },
+}
