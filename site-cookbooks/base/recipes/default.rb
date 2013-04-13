@@ -8,7 +8,7 @@ include_recipe "build-essential"
   git "#{Dir.home}/.#{pkg}" do
     repository "git://github.com/nviennot/#{pkg}-config.git"
     action :sync
-    notifies :run, "bash[install_#{pkg}]"
+    notifies :run, "bash[install_#{pkg}]", :immediately
   end
 
   bash "install_#{pkg}" do

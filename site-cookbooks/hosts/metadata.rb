@@ -1,0 +1,2 @@
+name "hosts"
+depends "hostsfile"

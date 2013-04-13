@@ -1,0 +1,16 @@
+.vagrant
+Berksfile.lock
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+
+# Bundler
+bin/*
+.bundle/*
+.vagrant*
+iso
+*.box
+logs

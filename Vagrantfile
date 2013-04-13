@@ -10,6 +10,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.define :master do |box|
     box.vm.provider(:virtualbox) { |vb| vb.name = box.vm.hostname = 'master' }
+    box.vm.network :private_network, ip: "10.1.1.1"
+
     box.vm.provision :chef_solo do |chef|
       json = JSON.parse(File.open('./nodes/master.json').read)
       chef.roles_path = "roles"
@@ -20,6 +22,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.define :secondary do |box|
     box.vm.provider(:virtualbox) { |vb| vb.name = box.vm.hostname = 'secondary' }
+    box.vm.network :private_network, ip: "10.1.1.2"
+
     box.vm.provision :chef_solo do |chef|
       json = JSON.parse(File.open('./nodes/secondary.json').read)
       chef.roles_path = "roles"
