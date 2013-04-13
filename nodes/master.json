@@ -2,7 +2,9 @@
   "run_list": [
     "recipe[base]",
     "recipe[hosts]",
-    "role[mongodb]"
+    "role[glusterfs]"
+    // "role[mongodb]",
+
     //"recipe[ssd]",
     //"role[oracle_jdk_7]"
     // "role[bootstrap]",

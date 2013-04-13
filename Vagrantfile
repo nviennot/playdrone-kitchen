@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
     box.vm.network :private_network, ip: "10.1.1.2"
 
     box.vm.provision :chef_solo do |chef|
-      json = JSON.parse(File.open('./nodes/secondary.json').read)
+      json = JSON.parse(File.open('./nodes/master.json').read)
       chef.roles_path = "roles"
       chef.run_list = json.delete('run_list')
       chef.json = json

@@ -1,4 +1,4 @@
-name "bootstrap"
+name "mongodb"
 run_list "recipe[mongodb::10gen_repo]", "recipe[mongodb::replicaset]"
 
 override_attributes mongodb: {

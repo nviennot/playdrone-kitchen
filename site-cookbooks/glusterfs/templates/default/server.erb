@@ -1,0 +1,26 @@
+volume posix
+  type storage/posix
+  option directory <%= node[:glusterfs][:server][:export_directory] %>
+end-volume
+
+volume locks
+  type features/locks
+  option mandatory-locks on
+  subvolumes posix
+end-volume
+
+volume iothreads
+  type performance/io-threads
+  option thread-count 16
+  subvolumes locks
+end-volume
+
+volume server-tcp
+  type protocol/server
+  subvolumes iothreads
+  option transport-type tcp
+  option auth.login.iothreads.allow <%= node[:glusterfs][:username] %>
+  option auth.login.<%= node[:glusterfs][:username] %>.password <%= node[:glusterfs][:password] %>
+  option transport.socket.listen-port 6996
+  option transport.socket.nodelay on
+end-volume

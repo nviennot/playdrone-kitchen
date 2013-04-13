@@ -1,0 +1,3 @@
+name "glusterfs"
+
+depends "apt"

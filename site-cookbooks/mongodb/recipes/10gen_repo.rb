@@ -25,9 +25,9 @@
 case node['platform_family']
 when "debian"
   # Adds the repo: http://www.mongodb.org/display/DOCS/Ubuntu+and+Debian+packages
-  execute "apt-get update" do
-    action :nothing
-  end
+  # execute "apt-get update" do
+    # action :nothing
+  # end
 
   apt_repository "10gen" do
     uri "http://downloads-distro.mongodb.org/repo/#{node[:mongodb][:apt_repo]}"
