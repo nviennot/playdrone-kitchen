@@ -5,9 +5,9 @@ Veewee::Session.declare({
   :disk_format => 'VDI',
   :hostiocache => 'off',
   :os_type_id => 'Ubuntu_64',
-  :iso_file => "ubuntu-12.10-server-amd64.iso",
-  :iso_src => "http://releases.ubuntu.com/12.10/ubuntu-12.10-server-amd64.iso",
-  :iso_md5 => '4bd3270bde86d7e4e017e3847a4af485',
+  :iso_file => "ubuntu-12.04.2-server-amd64.iso",
+  :iso_src => "http://releases.ubuntu.com/12.04/ubuntu-12.04.2-server-amd64.iso",
+  :iso_md5 => 'a8c667e871f48f3a662f3fbf1c3ddb17',
   :iso_download_timeout => "1000",
   :boot_wait => "4",
   :boot_cmd_sequence => [
@@ -16,7 +16,7 @@ Veewee::Session.declare({
     'debian-installer=en_US auto locale=en_US kbd-chooser/method=us ',
     'hostname=%NAME% ',
     'fb=false debconf/frontend=noninteractive ',
-    'keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=us keyboard-configuration/variant=us console-setup/ask_detect=false ',
+    'keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ',
     'initrd=/install/initrd.gz -- <Enter>'
 ],
   :kickstart_port => "7122",
@@ -28,17 +28,8 @@ Veewee::Session.declare({
   :ssh_key => "",
   :ssh_host_port => "7222",
   :ssh_guest_port => "22",
-  :sudo_cmd => "echo '%p'|sudo -S bash '%f'",
+  :sudo_cmd => "echo '%p'|sudo -S sh '%f'",
   :shutdown_cmd => "shutdown -P now",
-  :postinstall_files => [ 
-    "base.sh",
-    "vagrant.sh",
-    "virtualbox.sh",
-    "ruby.sh",
-    "puppet.sh",
-    "chef.sh",
-    "cleanup.sh",
-    "zerodisk.sh",
-  ],
+  :postinstall_files => [ "postinstall.sh"],
   :postinstall_timeout => "10000"
 })
