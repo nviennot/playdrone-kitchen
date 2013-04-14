@@ -3,6 +3,8 @@
     "recipe[base]",
     "recipe[hosts]",
     //"recipe[ssd]",
+    "role[graphite]",
+    "role[collectd_graphite]",
     "role[oracle_jdk_7]",
     "role[elasticsearch]",
     "role[glusterfs]",

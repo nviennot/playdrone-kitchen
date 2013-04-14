@@ -6,7 +6,7 @@ require 'berkshelf/vagrant'
 
 Vagrant.configure("2") do |config|
   config.berkshelf.enabled = true
-  config.vm.box = "ubuntu-12.10-server-amd64"
+  config.vm.box = "ubuntu-12.04-server-amd64"
 
   config.vm.define :master do |box|
     box.vm.provider(:virtualbox) do |vb|
@@ -14,7 +14,8 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--memory", 1024]
     end
     box.vm.network :private_network, ip: "10.1.1.1"
-    box.vm.network :forwarded_port, guest: 8080, host: 8080
+    box.vm.network :forwarded_port, guest: 8080, host: 8080 # Elastic search
+    box.vm.network :forwarded_port, guest: 8000, host: 8000 # Graphite
 
     box.vm.provision :chef_solo do |chef|
       json = JSON.parse(File.open('./nodes/master.json').read)
@@ -31,7 +32,6 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--memory", 1024]
     end
     box.vm.network :private_network, ip: "10.1.1.2"
-    box.vm.network :forwarded_port, guest: 8080, host: 8081
 
     box.vm.provision :chef_solo do |chef|
       json = JSON.parse(File.open('./nodes/master.json').read)

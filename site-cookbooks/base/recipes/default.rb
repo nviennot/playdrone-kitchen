@@ -18,6 +18,6 @@ include_recipe "build-essential"
   end
 end
 
-['sysstat', 'htop', 'iftop'].each do |pkg|
+['curl', 'sysstat', 'htop', 'iftop'].each do |pkg|
   package pkg
 end

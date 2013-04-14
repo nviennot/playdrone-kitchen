@@ -5,7 +5,5 @@ define :apt_repository_glusterfs do
     components ['main']
     keyserver 'keyserver.ubuntu.com'
     key "774BAC4D"
-    action :add
-    notifies :run, "execute[apt-get update]", :immediately
   end
 end
