@@ -1,5 +1,6 @@
 name "elasticsearch"
-run_list "recipe[elasticsearch]",
+run_list "recipe[oracle_jdk_7]",
+         "recipe[elasticsearch]",
          "recipe[elasticsearch::proxy]",
          "recipe[elasticsearch::plugins]"
 
