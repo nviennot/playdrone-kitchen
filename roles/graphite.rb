@@ -1,7 +1,8 @@
 name "graphite"
 run_list "recipe[apache2]",
          "recipe[graphite]",
-         "recipe[graphite::carbon_upstart]"
+         "recipe[graphite::carbon_upstart]",
+         "recipe[statsd]"
 
 override_attributes apache: {
   listen_ports: [8000]
@@ -18,4 +19,6 @@ override_attributes apache: {
   # storage_schemas: [{ name: 'catchall',
                       # pattern: '^.*',
                       # retentions: '1s:30d,1m:120d,1h:1y' }]
+}, statsd: {
+  flush_interval: 1000
 }

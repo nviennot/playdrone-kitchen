@@ -5,6 +5,7 @@ cookbook "java", :git => 'git://github.com/sroccaserra/java.git'
 cookbook "elasticsearch"
 cookbook "graphite", :git => 'git://github.com/nviennot/cookbook-graphite.git'
 cookbook "collectd", :git => 'git://github.com/coderanger/chef-collectd.git'
+cookbook "statsd",   :git => 'git://github.com/hectcastro/chef-statsd.git'
 
 # cookbook 'rvm',      :git => 'git://github.com/fnichol/chef-rvm.git'
 
