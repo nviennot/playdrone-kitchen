@@ -8,7 +8,9 @@ override_attributes apache: {
 }, graphite: {
   listen_port: 8000,
   carbon: { service_type: 'upstart' },
-  # storage_dir: '/srv/graphite', # That thing doesn't really work :(
+  base_dir: "/srv/graphite",
+  doc_root: "/srv/graphite/webapp",
+  storage_dir: "/srv/graphite/storage",
   timezone: 'America/New_York',
   storage_schemas: [{ name: 'catchall',
                       pattern: '^.*',

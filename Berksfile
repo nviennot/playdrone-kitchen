@@ -3,7 +3,7 @@ site :opscode
 cookbook "java", :git => 'git://github.com/sroccaserra/java.git'
 
 cookbook "elasticsearch"
-cookbook "graphite", :git => 'git://github.com/nviennot/graphite.git'
+cookbook "graphite", :git => 'git://github.com/nviennot/cookbook-graphite.git'
 cookbook "collectd", :git => 'git://github.com/coderanger/chef-collectd.git'
 
 # cookbook 'rvm',      :git => 'git://github.com/fnichol/chef-rvm.git'
