@@ -1,12 +1,13 @@
 {
   "run_list": [
-    "recipe[base]",
     "recipe[hosts]",
+    "recipe[base]",
     //"recipe[ssd]",
     "role[graphite]",
     "role[collectd_graphite]",
     "role[elasticsearch]",
     "role[glusterfs]",
-    "role[mongodb]"
+    "role[mongodb]",
+    "recipe[ruby]"
    ]
 }

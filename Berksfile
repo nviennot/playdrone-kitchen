@@ -6,8 +6,7 @@ cookbook "elasticsearch"
 cookbook "graphite", :git => 'git://github.com/nviennot/cookbook-graphite.git'
 cookbook "collectd", :git => 'git://github.com/coderanger/chef-collectd.git'
 cookbook "statsd",   :git => 'git://github.com/hectcastro/chef-statsd.git'
-
-# cookbook 'rvm',      :git => 'git://github.com/fnichol/chef-rvm.git'
+cookbook 'rvm',      :git => 'git://github.com/fnichol/chef-rvm.git'
 
 cookbook 'base',              :path => 'site-cookbooks/base'
 cookbook 'hosts',             :path => 'site-cookbooks/hosts'
@@ -16,3 +15,4 @@ cookbook 'mongodb',           :path => 'site-cookbooks/mongodb'
 cookbook 'glusterfs',         :path => 'site-cookbooks/glusterfs'
 cookbook 'collectd_graphite', :path => 'site-cookbooks/collectd_graphite'
 cookbook 'oracle_jdk_7',      :path => 'site-cookbooks/oracle_jdk_7'
+cookbook 'ruby',              :path => 'site-cookbooks/ruby'
