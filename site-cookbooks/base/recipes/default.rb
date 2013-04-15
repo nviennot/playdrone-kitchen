@@ -7,7 +7,8 @@ include_recipe "build-essential"
 
   git "#{Dir.home}/.#{pkg}" do
     repository "git://github.com/nviennot/#{pkg}-config.git"
-    
+    revision 'wip-sid' if pkg == 'vim'
+
     action :sync
     notifies :run, "bash[install_#{pkg}]", :immediately
   end

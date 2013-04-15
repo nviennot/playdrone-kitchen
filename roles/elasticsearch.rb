@@ -9,7 +9,7 @@ default_attributes elasticsearch: {
   cluster: { name: "google-play-crawler" },
   path:    { data: "/srv/elasticsearch",
              logs: "/var/log/elasticsearch" },
-  nginx:   { users: [{username: "es-user", password: "es-password"}],
+  nginx:   { users: [{username: "user", password: "password"}],
              allow_cluster_api: true },
   plugins: { 'karmi/elasticsearch-paramedic'        => {},
              'mobz/elasticsearch-head'              => {},

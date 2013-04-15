@@ -4,7 +4,7 @@ run_list "recipe[glusterfs::server]", "recipe[glusterfs::client]"
 default_attributes glusterfs: {
   client: { mount_directory:  "/srv/apks"      },
   server: { export_directory: "/srv/glusterfs" },
-  username: 'gluserfs-user',
-  password: 'gluserfs-password',
+  username: 'user',
+  password: 'password',
   hosts: ['master', 'secondary']
 }

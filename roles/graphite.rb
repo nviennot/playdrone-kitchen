@@ -12,7 +12,7 @@ default_attributes apache: {
 }, apache_auth: [{
   htpasswd_file: '/etc/apache2/htpasswd',
   htaccess_file: '/srv/graphite/webapp/.htaccess',
-  user: 'graphite',
+  user: 'user',
   password: 'password'
 }], graphite: {
   listen_port: 80,

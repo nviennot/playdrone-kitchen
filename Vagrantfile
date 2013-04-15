@@ -22,8 +22,13 @@ Vagrant.configure("2") do |config|
       chef.run_list = [
         "recipe[hosts]",
         "recipe[base]",
-        "recipe[iptables]",
         "role[graphite]",
+        "role[collectd_graphite]",
+        "role[elasticsearch]",
+        "role[glusterfs]",
+        "role[mongodb]",
+        "role[redis]",
+        "recipe[ruby]",
       ]
 
       chef.json = {
@@ -33,35 +38,54 @@ Vagrant.configure("2") do |config|
           'secondary' => '10.1.1.2'
         },
 
-        iptables: {
-          services: { graphite_http: 8000 }
-        },
-
         apache:   { listen_ports: [8000] },
         graphite: { listen_port: 8000, storage_schemas: [{ name: 'catchall', pattern: '^.*', retentions: '1s:1d' }] },
         elasticsearch: {
           bootstrap: { mlockall: false },
-          network: { publish_host: 'master' },
+          network: { publish_host: '10.1.1.1' },
           'discovery.zen.ping.unicast.hosts' => ["master", "secondary"]
         },
-        glusterfs: { hosts: ['master', 'secondary'] }
+        glusterfs: { hosts: ['master', 'secondary'] },
+        mongodb: { hosts: ["master", "secondary"] }
       }
     end
   end
 
-  # config.vm.define :secondary do |box|
-    # box.vm.provider(:virtualbox) do |vb|
-      # vb.name = box.vm.hostname = 'secondary'
-      # vb.customize ["modifyvm", :id, "--memory", 1024]
-    # end
-    # box.vm.network :private_network, ip: "10.1.1.2"
+  config.vm.define :secondary do |box|
+    box.vm.provider(:virtualbox) do |vb|
+      vb.name = box.vm.hostname = 'secondary'
+      vb.customize ["modifyvm", :id, "--memory", 1024]
+    end
+    box.vm.network :private_network, ip: "10.1.1.2"
+    box.vm.network :forwarded_port, guest: 8080, host: 8081 # Elastic search
 
-    # box.vm.provision :chef_solo do |chef|
-      # json = JSON.parse(File.open('./nodes/master.json').read)
-      # json.merge!(elasticsearch: { network: { publish_host: 'secondary' }, bootstrap: { mlockall: false } })
-      # chef.roles_path = "roles"
-      # chef.run_list = json.delete('run_list')
-      # chef.json = json
-    # end
-  # end
+    box.vm.provision :chef_solo do |chef|
+      chef.roles_path = "roles"
+      chef.run_list = [
+        "recipe[hosts]",
+        "recipe[base]",
+        "role[collectd_graphite]",
+        "role[elasticsearch]",
+        "role[glusterfs]",
+        "role[mongodb]",
+        "recipe[ruby]",
+      ]
+
+      chef.json = {
+        hosts: {
+          'monitor'   => '10.1.1.1',
+          'master'    => '10.1.1.1',
+          'secondary' => '10.1.1.2'
+        },
+
+        elasticsearch: {
+          bootstrap: { mlockall: false },
+          network: { publish_host: '10.1.1.2' },
+          'discovery.zen.ping.unicast.hosts' => ["master", "secondary"]
+        },
+        glusterfs: { hosts: ['master', 'secondary'] },
+        mongodb: { hosts: ["master", "secondary"] }
+      }
+    end
+  end
 end
