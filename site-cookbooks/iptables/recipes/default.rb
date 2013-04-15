@@ -7,9 +7,10 @@ end
 
 hosts = node[:iptables][:trusted_ips]
 # Fall back to hosts definitions
-hosts = node[:hosts].values.uniq if hosts.empty?
+hosts = node[:hosts].values if hosts.empty?
+hosts << '127.0.0.1'
 
-hosts.each do |ip|
+hosts.uniq.each do |ip|
   simple_iptables_rule "trusted_ips" do
     rule "--proto tcp --src #{ip}"
     jump "ACCEPT"
