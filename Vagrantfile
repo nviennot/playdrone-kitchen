@@ -22,13 +22,19 @@ Vagrant.configure("2") do |config|
       chef.run_list = [
         "recipe[hosts]",
         "recipe[base]",
+        "recipe[iptables]",
         "role[graphite]",
       ]
 
       chef.json = {
         hosts: {
-          'monitor' => '10.1.1.1',
-          'master'  => '10.1.1.1'
+          'monitor'   => '10.1.1.1',
+          'master'    => '10.1.1.1',
+          'secondary' => '10.1.1.2'
+        },
+
+        iptables: {
+          services: { graphite_http: 8000 }
         },
 
         apache:   { listen_ports: [8000] },

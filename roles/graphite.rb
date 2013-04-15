@@ -7,6 +7,8 @@ run_list "recipe[apache2]",
 
 default_attributes apache: {
   listen_ports: [80]
+}, iptables: {
+  services: { graphite_http: 80 }
 }, apache_auth: [{
   htpasswd_file: '/etc/apache2/htpasswd',
   htaccess_file: '/srv/graphite/webapp/.htaccess',
