@@ -7,6 +7,7 @@ cookbook "graphite", :git => 'git://github.com/nviennot/cookbook-graphite.git'
 cookbook "collectd", :git => 'git://github.com/coderanger/chef-collectd.git'
 cookbook "statsd",   :git => 'git://github.com/hectcastro/chef-statsd.git'
 cookbook 'rvm',      :git => 'git://github.com/fnichol/chef-rvm.git'
+cookbook 'redis',    :git => 'git://github.com/miah/chef-redis.git'
 
 cookbook 'base',              :path => 'site-cookbooks/base'
 cookbook 'hosts',             :path => 'site-cookbooks/hosts'
