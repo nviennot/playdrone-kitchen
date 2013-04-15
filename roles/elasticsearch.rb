@@ -4,7 +4,7 @@ run_list "recipe[oracle_jdk_7]",
          "recipe[elasticsearch::proxy]",
          "recipe[elasticsearch::plugins]"
 
-override_attributes elasticsearch: {
+default_attributes elasticsearch: {
   version: "0.90.0.RC2",
   cluster: { name: "google-play-crawler" },
   path:    { data: "/srv/elasticsearch",

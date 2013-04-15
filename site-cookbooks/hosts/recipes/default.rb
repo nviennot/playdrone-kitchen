@@ -1,7 +1,8 @@
-node['hosts'].each do |ip, host|
+include_recipe 'hostname'
+
+node['hosts'].each do |host, ip|
   hostsfile_entry ip do
     hostname host
-    action :create
+    action :append
   end
 end
-

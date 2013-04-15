@@ -1,0 +1,6 @@
+AuthUserFile <%= @htpasswd_file %>
+AuthGroupFile /dev/null
+AuthName "Authentification Required"
+AuthType Basic
+
+require user <%= @user %>

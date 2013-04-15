@@ -6,6 +6,7 @@
 .*.sw[a-z]
 *.un~
 /cookbooks
+/nodes
 
 # Bundler
 bin/*
