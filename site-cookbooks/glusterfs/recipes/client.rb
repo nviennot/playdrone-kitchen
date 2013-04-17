@@ -8,19 +8,24 @@ execute "add-fuse-to-modules" do
   not_if "grep fuse /etc/modules"
 end
 
-directory node[:glusterfs][:client][:mount_directory] do
-  recursive true
-end
+use_localhost = !([node[:hostname], node[:fqdn], node[:ipaddress]] & node[:glusterfs][:peers]).empty?
 
-template "/etc/glusterfs/glusterfs.vol" do
-  source "client.erb"
-  mode   "0644"
-  owner  "root"
-  group  "root"
-end
+node[:glusterfs][:client][:volumes].each do |volume|
+  mount_point = "#{node[:glusterfs][:client][:prefix]}/#{volume}"
 
-mount node[:glusterfs][:client][:mount_directory] do
-  device "/etc/glusterfs/glusterfs.vol"
-  fstype "glusterfs"
-  action [:mount, :enable]
+  directory mount_point do
+    recursive true
+  end
+
+  mount mount_point do
+    if use_localhost
+      device "localhost:#{volume}"
+      only_if "gluster volume info #{volume}"
+    else
+      device "#{node[:glusterfs][:peers].first}:#{volume}"
+    end
+
+    fstype "glusterfs"
+    action [:mount, :enable]
+  end
 end
