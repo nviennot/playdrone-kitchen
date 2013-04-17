@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
           network: { publish_host: '10.1.1.1' },
           'discovery.zen.ping.unicast.hosts' => ["master", "secondary"]
         },
-        glusterfs: { hosts: ['master', 'secondary'] },
+        glusterfs: { peers: ['master', 'secondary'] },
         mongodb: { hosts: ["master", "secondary"] }
       }
     end
@@ -83,7 +83,7 @@ Vagrant.configure("2") do |config|
           network: { publish_host: '10.1.1.2' },
           'discovery.zen.ping.unicast.hosts' => ["master", "secondary"]
         },
-        glusterfs: { hosts: ['master', 'secondary'] },
+        glusterfs: { peers: ['master', 'secondary'] },
         mongodb: { hosts: ["master", "secondary"] }
       }
     end
