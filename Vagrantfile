@@ -8,9 +8,9 @@ Vagrant.configure("2") do |config|
   config.berkshelf.enabled = true
   config.vm.box = "ubuntu-12.04-server-amd64"
 
-  config.vm.define :master do |box|
+  config.vm.define :node1 do |box|
     box.vm.provider(:virtualbox) do |vb|
-      vb.name = box.vm.hostname = 'master'
+      vb.name = box.vm.hostname = 'node1'
       vb.customize ["modifyvm", :id, "--memory", 1024]
     end
     box.vm.network :private_network, ip: "10.1.1.1"
@@ -27,16 +27,15 @@ Vagrant.configure("2") do |config|
         "role[elasticsearch]",
         "recipe[glusterfs::server]",
         "recipe[glusterfs::client]",
-        "role[mongodb]",
         "role[redis]",
         "recipe[ruby]",
       ]
 
       chef.json = {
         hosts: {
-          'monitor'   => '10.1.1.1',
-          'master'    => '10.1.1.1',
-          'secondary' => '10.1.1.2'
+          'monitor' => '10.1.1.1',
+          'node1'   => '10.1.1.1',
+          'node2'   => '10.1.1.2'
         },
 
         apache:   { listen_ports: [8000] },
@@ -44,17 +43,17 @@ Vagrant.configure("2") do |config|
         elasticsearch: {
           bootstrap: { mlockall: false },
           network: { publish_host: '10.1.1.1' },
-          'discovery.zen.ping.unicast.hosts' => ["master", "secondary"]
+          'discovery.zen.ping.unicast.hosts' => ["node1", "node2"]
         },
-        glusterfs: { peers: ['master', 'secondary'] },
-        mongodb: { hosts: ["master", "secondary"] }
+        glusterfs: { peers: ['node1', 'node2'] },
+        mongodb: { hosts: ["node1", "node2"] }
       }
     end
   end
 
-  config.vm.define :secondary do |box|
+  config.vm.define :node2 do |box|
     box.vm.provider(:virtualbox) do |vb|
-      vb.name = box.vm.hostname = 'secondary'
+      vb.name = box.vm.hostname = 'node2'
       vb.customize ["modifyvm", :id, "--memory", 1024]
     end
     box.vm.network :private_network, ip: "10.1.1.2"
@@ -69,24 +68,23 @@ Vagrant.configure("2") do |config|
         "role[elasticsearch]",
         "recipe[glusterfs::server]",
         "recipe[glusterfs::client]",
-        "role[mongodb]",
         "recipe[ruby]",
       ]
 
       chef.json = {
         hosts: {
-          'monitor'   => '10.1.1.1',
-          'master'    => '10.1.1.1',
-          'secondary' => '10.1.1.2'
+          'monitor' => '10.1.1.1',
+          'node1'   => '10.1.1.1',
+          'node2'   => '10.1.1.2'
         },
 
         elasticsearch: {
           bootstrap: { mlockall: false },
           network: { publish_host: '10.1.1.2' },
-          'discovery.zen.ping.unicast.hosts' => ["master", "secondary"]
+          'discovery.zen.ping.unicast.hosts' => ["node1", "node2"]
         },
-        glusterfs: { peers: ['master', 'secondary'] },
-        mongodb: { hosts: ["master", "secondary"] }
+        glusterfs: { peers: ['node1', 'node2'] },
+        mongodb: { hosts: ["node1", "node2"] }
       }
     end
   end
