@@ -16,6 +16,7 @@ Vagrant.configure("2") do |config|
     box.vm.network :private_network, ip: "10.1.1.1"
     box.vm.network :forwarded_port, guest: 8080, host: 8080 # Elastic search
     box.vm.network :forwarded_port, guest: 8000, host: 8000 # Graphite
+    box.vm.network :forwarded_port, guest: 80,   host: 4000 # Application
 
     box.vm.provision :chef_solo do |chef|
       chef.roles_path = "roles"
@@ -46,7 +47,6 @@ Vagrant.configure("2") do |config|
           'discovery.zen.ping.unicast.hosts' => ["node1", "node2"]
         },
         glusterfs: { peers: ['node1', 'node2'] },
-        mongodb: { hosts: ["node1", "node2"] }
       }
     end
   end
@@ -84,7 +84,6 @@ Vagrant.configure("2") do |config|
           'discovery.zen.ping.unicast.hosts' => ["node1", "node2"]
         },
         glusterfs: { peers: ['node1', 'node2'] },
-        mongodb: { hosts: ["node1", "node2"] }
       }
     end
   end

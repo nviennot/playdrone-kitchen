@@ -25,6 +25,8 @@ node[:glusterfs][:client][:volumes].each do |volume|
       device "#{node[:glusterfs][:peers].first}:#{volume}"
     end
 
+    options ['defaults', 'noatime', 'nobootwait']
+
     fstype "glusterfs"
     action [:mount, :enable]
   end
