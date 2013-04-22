@@ -13,8 +13,9 @@ template '/etc/init/sidekiq-market.conf' do
   source 'sidekiq-market.erb'
   owner 'root'
   mode '0644'
-  variables :app_path => node[:app][:unicorn][:app_path],
-            :rvm_env  => node[:app][:unicorn][:rvm_env]
+  variables :app_path => node[:app][:sidekiq][:app_path],
+            :rvm_env  => node[:app][:sidekiq][:rvm_env],
+            :threads  => node[:app][:sidekiq][:threads]
 end
 
 service "sidekiq-market" do
@@ -26,8 +27,9 @@ template '/etc/init/sidekiq-bg.conf' do
   source 'sidekiq-bg.erb'
   owner 'root'
   mode '0644'
-  variables :app_path => node[:app][:unicorn][:app_path],
-            :rvm_env  => node[:app][:unicorn][:rvm_env]
+  variables :app_path => node[:app][:sidekiq][:app_path],
+            :rvm_env  => node[:app][:sidekiq][:rvm_env],
+            :threads  => node[:app][:sidekiq][:threads]
 end
 
 service "sidekiq-bg" do

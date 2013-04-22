@@ -7,7 +7,7 @@ kill timeout 65
 env APP_PATH="<%= @app_path %>/current"
 env RVM_ENV="<%= @rvm_env %>"
 env RAILS_ENV=production
-env CMD="sidekiq -v -q search_app -q process_app_fast -e production -t 60 -c 10"
+env CMD="sidekiq -v -q search_app -q process_app_fast -e production -t 60 -c <%= @threads %>"
 
 setuid deploy
 setgid deploy
