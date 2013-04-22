@@ -23,6 +23,7 @@ Vagrant.configure("2") do |config|
       chef.run_list = [
         "recipe[hosts]",
         "recipe[base]",
+        "recipe[time]",
         "role[graphite]",
         "role[collectd_graphite]",
         "role[elasticsearch]",
@@ -66,6 +67,7 @@ Vagrant.configure("2") do |config|
       chef.run_list = [
         "recipe[hosts]",
         "recipe[base]",
+        "recipe[time]",
         "role[collectd_graphite]",
         "role[elasticsearch]",
         "recipe[glusterfs::server]",

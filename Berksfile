@@ -1,14 +1,15 @@
 site :opscode
 
-cookbook "java", :git => 'git://github.com/sroccaserra/java.git'
-
+cookbook 'ntp'
 cookbook "elasticsearch"
+cookbook "java",     :git => 'git://github.com/sroccaserra/java.git'
 cookbook "graphite", :git => 'git://github.com/nviennot/cookbook-graphite.git'
 cookbook "collectd", :git => 'git://github.com/coderanger/chef-collectd.git'
 cookbook "statsd",   :git => 'git://github.com/hectcastro/chef-statsd.git'
 cookbook 'rvm',      :git => 'git://github.com/fnichol/chef-rvm.git'
 cookbook 'redis',    :git => 'git://github.com/miah/chef-redis.git'
 cookbook 'user',     :git => 'git://github.com/fnichol/chef-user.git'
+cookbook 'timezone', :git => 'git://github.com/dragonsmith/chef-timezone.git'
 
 cookbook 'base',              :path => 'site-cookbooks/base'
 cookbook 'hosts',             :path => 'site-cookbooks/hosts'
@@ -21,3 +22,4 @@ cookbook 'ruby',              :path => 'site-cookbooks/ruby'
 cookbook 'apache_auth',       :path => 'site-cookbooks/apache_auth'
 cookbook 'iptables',          :path => 'site-cookbooks/iptables'
 cookbook 'app',               :path => 'site-cookbooks/app'
+cookbook 'time',              :path => 'site-cookbooks/time'
