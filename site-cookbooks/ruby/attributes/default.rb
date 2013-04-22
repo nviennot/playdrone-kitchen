@@ -11,6 +11,10 @@ default[:rvm][:rubies] = [
   }
 ]
 
+default[:rvm][:global_gems] = [
+  { 'name' => 'chef' }
+]
+
 default[:rvm][:rvmrc] = {
   'rvm_project_rvmrc'             => 1,
   'rvm_gemset_create_on_use_flag' => 1,
