@@ -1,0 +1,25 @@
+description "sidekiq-market"
+
+respawn
+respawn limit 10000 30
+kill timeout 65
+
+env APP_PATH="<%= @app_path %>/current"
+env RVM_ENV="<%= @rvm_env %>"
+env RAILS_ENV=production
+env CMD="sidekiq -v -q search_app -q process_app_fast -e production -t 60 -c 10"
+
+setuid deploy
+setgid deploy
+
+pre-start script
+  mount -l | grep /srv/scratch > /dev/null || sudo mount /srv/scratch || exit 1
+  mount -l | grep /srv/repos   > /dev/null || sudo mount /srv/repos   || exit 1
+  sudo chown deploy: /srv/scratch || exit 1
+  sudo chown deploy: /srv/repos   || exit 1
+end script
+
+script
+  cd $APP_PATH
+  exec /usr/local/rvm/bin/rvm-exec $RVM_ENV bundle exec $CMD
+end script

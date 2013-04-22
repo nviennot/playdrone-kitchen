@@ -1,0 +1,36 @@
+client_max_body_size 20M;
+
+upstream unicorn {
+  server unix:<%= @app_path %>/shared/pids/unicorn.sock fail_timeout=0;
+}
+
+server {
+  listen <%= @port %> default_server;
+  server_name _;
+
+  root <%= @app_path %>/current/public;
+
+  error_page 500 502 503 504 /500.html;
+
+  try_files $uri @unicorn;
+
+  include /etc/nginx/mime.types;
+  default_type application/octet-stream;
+  gzip on;
+
+  location @unicorn {
+    proxy_set_header  X-Real-IP  $remote_addr;
+    proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header  Host $http_host;
+    proxy_redirect    off;
+
+    proxy_buffering off;
+    proxy_read_timeout 600s;
+    proxy_send_timeout 60s;
+
+    proxy_pass http://unicorn;
+  }
+
+  auth_basic "Google Play with me";
+  auth_basic_user_file /etc/nginx/unicorn-htpasswd;
+}

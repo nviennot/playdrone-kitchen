@@ -6,6 +6,8 @@ default_attributes redis: {
   install_type: 'source',
   symlink_binaries: true,
   config: {
-    dir: '/srv/redis'
+    bind: '0.0.0.0',
+    dir: '/srv/redis',
+    pidfile: '/srv/redis/redis.pid'
   }
 }
