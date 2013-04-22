@@ -1,20 +1,18 @@
-description "unicorn"
+description "metrics"
 
 respawn
 respawn limit 10000 30
-kill timeout 10
+kill timeout 65
 
-env SOCK="<%= @app_path %>/shared/pids/unicorn.sock"
 env APP_PATH="<%= @app_path %>/current"
 env RVM_ENV="<%= @rvm_env %>"
 env RAILS_ENV=production
-env CMD="unicorn -c ./config/unicorn.rb"
+env CMD="rake metrics:run"
 
 setuid deploy
 setgid deploy
 
 script
   cd $APP_PATH
-  rm -f $SOCK
   exec /usr/local/rvm/bin/rvm-exec $RVM_ENV bundle exec $CMD
 end script

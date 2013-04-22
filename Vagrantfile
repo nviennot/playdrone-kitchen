@@ -74,6 +74,7 @@ Vagrant.configure("2") do |config|
         "recipe[glusterfs::client]",
         "recipe[ruby]",
         "recipe[app::sidekiq]",
+        "recipe[app::metrics]",
       ]
 
       chef.json = {
