@@ -1,3 +1,5 @@
+include_recipe 'app::shared'
+
 directory '/srv/scratch' do
   recursive true
 end

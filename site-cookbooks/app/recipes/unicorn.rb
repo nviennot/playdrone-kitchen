@@ -1,4 +1,5 @@
 include_recipe 'elasticsearch::nginx'
+include_recipe 'app::shared'
 
 template "/etc/nginx/conf.d/unicorn.conf" do
   source "nginx-unicorn.erb"

@@ -1,3 +1,5 @@
+include_recipe 'app::shared'
+
 template '/etc/init/metrics.conf' do
   source 'metrics.erb'
   owner 'root'
