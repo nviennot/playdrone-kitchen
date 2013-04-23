@@ -16,4 +16,6 @@ default_attributes elasticsearch: {
              'polyfractal/elasticsearch-inquisitor' => {}},
   'discovery.zen.ping.multicast.enabled' => false,
   'discovery.zen.ping.unicast.hosts'     => ["master", "secondary"]
+}, iptables: {
+  services: { elasticsearch_http: 8080 }
 }
