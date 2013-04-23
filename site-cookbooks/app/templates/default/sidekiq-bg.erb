@@ -7,7 +7,7 @@ kill timeout 65
 env APP_PATH="<%= @app_path %>/current"
 env RVM_ENV="<%= @rvm_env %>"
 env RAILS_ENV=production
-env CMD="sidekiq -v -q purge_branch -q process_app -e production -t 60 -c <%= @threads %>"
+env CMD="sidekiq -v -q purge_branch.<%= @host %> -q process_app.<%= @host %> -e production -t 60 -c <%= @threads %>"
 
 setuid deploy
 setgid deploy

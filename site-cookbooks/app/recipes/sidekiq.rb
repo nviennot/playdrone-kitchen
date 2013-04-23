@@ -15,7 +15,8 @@ template '/etc/init/sidekiq-market.conf' do
   mode '0644'
   variables :app_path => node[:app][:sidekiq][:app_path],
             :rvm_env  => node[:app][:sidekiq][:rvm_env],
-            :threads  => node[:app][:sidekiq][:threads]
+            :threads  => node[:app][:sidekiq][:market_threads],
+            :host     => node[:hostname]
 end
 
 service "sidekiq-market" do
@@ -29,7 +30,8 @@ template '/etc/init/sidekiq-bg.conf' do
   mode '0644'
   variables :app_path => node[:app][:sidekiq][:app_path],
             :rvm_env  => node[:app][:sidekiq][:rvm_env],
-            :threads  => node[:app][:sidekiq][:threads]
+            :threads  => node[:app][:sidekiq][:bg_threads],
+            :host     => node[:hostname]
 end
 
 service "sidekiq-bg" do
