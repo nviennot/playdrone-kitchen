@@ -4,6 +4,7 @@ LoadPlugin "write_graphite"
   <Carbon>
   Host "<%= node[:collectd_graphite][:host] %>"
   Port "<%= node[:collectd_graphite][:port] %>"
+  Prefix "collectd."
   EscapeCharacter "_"
   SeparateInstances true
   AlwaysAppendDS false
