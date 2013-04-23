@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
         },
 
         apache:   { listen_ports: [8000] },
-        graphite: { listen_port: 8000, storage_schemas: [{ name: 'catchall', pattern: '^.*', retentions: '1s:1d' }] },
+        graphite: { listen_port: 8000, storage_schemas: [{ name: 'catchall', pattern: '^.*', retentions: '10s:3d' }] },
         elasticsearch: {
           bootstrap: { mlockall: false },
           network: { publish_host: '10.1.1.11' },

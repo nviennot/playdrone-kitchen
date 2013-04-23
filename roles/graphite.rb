@@ -23,7 +23,7 @@ default_attributes apache: {
   timezone: 'America/New_York',
   storage_schemas: [{ name: 'catchall',
                       pattern: '^.*',
-                      retentions: '1s:30d,1m:120d,1h:1y' }]
+                      retentions: '10s:30d,1m:120d,1h:1y' }]
 }, statsd: {
-  flush_interval: 1000
+  flush_interval: 10000
 }
