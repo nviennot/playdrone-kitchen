@@ -27,8 +27,6 @@ Vagrant.configure("2") do |config|
         "role[graphite]",
         "role[collectd_graphite]",
         "role[elasticsearch]",
-        "recipe[glusterfs::server]",
-        "recipe[glusterfs::client]",
         "role[redis]",
         "recipe[ruby]",
         "recipe[app::unicorn]",
@@ -38,6 +36,7 @@ Vagrant.configure("2") do |config|
       chef.json = {
         hosts: {
           'monitor' => '10.1.1.11',
+          'redis'   => '10.1.1.11',
           'node1'   => '10.1.1.11',
           'node2'   => '10.1.1.12'
         },
@@ -71,8 +70,6 @@ Vagrant.configure("2") do |config|
         "recipe[time]",
         "role[collectd_graphite]",
         "role[elasticsearch]",
-        "recipe[glusterfs::server]",
-        "recipe[glusterfs::client]",
         "recipe[ruby]",
         "recipe[app::sidekiq]",
         "recipe[app::metrics]",
@@ -81,6 +78,7 @@ Vagrant.configure("2") do |config|
       chef.json = {
         hosts: {
           'monitor' => '10.1.1.11',
+          'redis'   => '10.1.1.11',
           'node1'   => '10.1.1.11',
           'node2'   => '10.1.1.12'
         },
