@@ -5,7 +5,7 @@ end
 mount '/srv/scratch' do
   fstype 'tmpfs'
   device 'tmpfs'
-  options 'size=50%'
+  options 'size=2G'
   action [:mount, :enable]
 end
 
