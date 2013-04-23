@@ -2,7 +2,7 @@ description "metrics"
 
 respawn
 respawn limit 10000 30
-kill timeout 65
+kill timeout 5
 
 env APP_PATH="<%= @app_path %>/current"
 env RVM_ENV="<%= @rvm_env %>"

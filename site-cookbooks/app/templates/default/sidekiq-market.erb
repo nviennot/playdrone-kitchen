@@ -14,7 +14,6 @@ setgid deploy
 
 pre-start script
   mount -l | grep /srv/scratch > /dev/null || sudo mount /srv/scratch || exit 1
-  mount -l | grep /srv/repos   > /dev/null || sudo mount /srv/repos   || exit 1
   sudo chown deploy: /srv/scratch || exit 1
   sudo chown deploy: /srv/repos   || exit 1
 end script
