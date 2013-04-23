@@ -4,7 +4,7 @@ include_recipe 'app::shared'
 template "/etc/nginx/conf.d/unicorn.conf" do
   source "nginx-unicorn.erb"
   notifies :reload, 'service[nginx]'
-  variables :app_path => node[:app][:unicorn][:app_path],
+  variables :app_path => node[:app][:app_path],
             :port     => node[:app][:unicorn][:port]
 end
 
@@ -26,8 +26,8 @@ template '/etc/init/unicorn.conf' do
   source 'unicorn.erb'
   owner 'root'
   mode '0644'
-  variables :app_path => node[:app][:unicorn][:app_path],
-            :rvm_env  => node[:app][:unicorn][:rvm_env]
+  variables :app_path => node[:app][:app_path],
+            :rvm_env  => node[:app][:rvm_env]
 end
 
 service "unicorn" do

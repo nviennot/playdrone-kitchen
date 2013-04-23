@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
           'discovery.zen.ping.unicast.hosts' => ["node1", "node2"]
         },
         glusterfs: { peers: ['node1', 'node2'] },
-        app: { sidekiq: { threads: 2 } },
+        app: { sidekiq: { market_threads: 4, bg_threads: 2 } },
       }
     end
   end
@@ -89,7 +89,7 @@ Vagrant.configure("2") do |config|
           'discovery.zen.ping.unicast.hosts' => ["node1", "node2"]
         },
         glusterfs: { peers: ['node1', 'node2'] },
-        app: { sidekiq: { threads: 2 } },
+        app: { sidekiq: { market_threads: 4, bg_threads: 2 } },
       }
     end
   end
