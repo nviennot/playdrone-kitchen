@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/RiotGames/berkshelf-vagrant.git
+  remote: git://github.com/berkshelf/vagrant-berkshelf.git
   revision: 6ec56d492feab36dc2c77a1f6768259b35a3a251
   specs:
     berkshelf-vagrant (1.1.0)
@@ -203,7 +203,7 @@ PLATFORMS
 
 DEPENDENCIES
   berkshelf
-  berkshelf-vagrant!
   knife-solo
   vagrant!
+  vagrant-berkshelf!
   veewee!
