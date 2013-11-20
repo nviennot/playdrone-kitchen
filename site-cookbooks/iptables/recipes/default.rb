@@ -12,7 +12,7 @@ hosts << '127.0.0.1'
 
 hosts.uniq.each do |ip|
   simple_iptables_rule "trusted_ips" do
-    rule "--proto tcp --src #{ip}"
+    rule "--proto all --src #{ip}"
     jump "ACCEPT"
   end
 end
