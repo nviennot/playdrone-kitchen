@@ -7,6 +7,6 @@ end
 node['hosts'].each do |host, ip|
   hostsfile_entry ip do
     hostname host
-    action :append
+    action :create
   end
 end

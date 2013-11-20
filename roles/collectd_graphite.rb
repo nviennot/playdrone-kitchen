@@ -5,7 +5,7 @@ run_list "recipe[collectd_graphite]"
 # for the graphite setup, see graphite.rb
 
 default_attributes collectd: {
-  interval: 1
+  interval: 10
 }, collectd_graphite: {
   host: 'monitor',
   port: '2003',

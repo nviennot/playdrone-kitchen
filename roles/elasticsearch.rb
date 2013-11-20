@@ -5,7 +5,7 @@ run_list "recipe[oracle_jdk_7]",
          "recipe[elasticsearch::plugins]"
 
 default_attributes elasticsearch: {
-  version: "0.90.0.RC2",
+  version: "0.90.7",
   cluster: { name: "google-play-crawler" },
   path:    { data: "/srv/elasticsearch",
              logs: "/var/log/elasticsearch" },
