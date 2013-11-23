@@ -30,17 +30,19 @@ service "sidekiq-market" do
   action [:enable] # manual start with capistrano
 end
 
-template '/etc/init/sidekiq-bg.conf' do
-  source 'sidekiq-bg.erb'
-  owner 'root'
-  mode '0644'
-  variables :app_path => node[:app][:app_path],
-            :rvm_env  => node[:app][:rvm_env],
-            :threads  => node[:app][:sidekiq][:bg_threads],
-            :host     => node[:hostname]
-end
+node[:app][:sidekiq][:bg_processes].times do |i|
+  template "/etc/init/sidekiq-bg#{i+1}.conf" do
+    source 'sidekiq-bg.erb'
+    owner 'root'
+    mode '0644'
+    variables :app_path => node[:app][:app_path],
+              :rvm_env  => node[:app][:rvm_env],
+              :threads  => node[:app][:sidekiq][:bg_threads],
+              :host     => node[:hostname]
+  end
 
-service "sidekiq-bg" do
-  provider Chef::Provider::Service::Upstart
-  action [:enable] # manual start with capistrano
+  service "sidekiq-bg#{i+1}" do
+    provider Chef::Provider::Service::Upstart
+    action [:enable] # manual start with capistrano
+  end
 end
