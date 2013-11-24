@@ -1,13 +1,12 @@
 include_attribute 'rvm'
 
-default[:rvm][:default_ruby]      = "ruby-1.9.3-p327"
-default[:rvm][:user_default_ruby] = "ruby-1.9.3-p327"
+default[:rvm][:default_ruby]      = "ruby-2.0"
+default[:rvm][:user_default_ruby] = "ruby-2.0"
 
 default[:rvm][:rubies] = [
   {
-    'version' => 'ruby-1.9.3-p327',
-    'ruby_string' => 'ruby-1.9.3-p327',
-    'patch'   => 'falcon',
+    'version' => 'ruby-2.0',
+    'ruby_string' => 'ruby-2.0',
   }
 ]
 
