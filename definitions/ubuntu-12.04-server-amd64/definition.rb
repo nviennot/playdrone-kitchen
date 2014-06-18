@@ -1,13 +1,13 @@
 Veewee::Session.declare({
   :cpu_count => '4',
   :memory_size=> '1024',
-  :disk_size => '20280',
+  :disk_size => '32000',
   :disk_format => 'VDI',
   :hostiocache => 'off',
   :os_type_id => 'Ubuntu_64',
-  :iso_file => "ubuntu-12.04.2-server-amd64.iso",
-  :iso_src => "http://releases.ubuntu.com/12.04/ubuntu-12.04.2-server-amd64.iso",
-  :iso_md5 => 'a8c667e871f48f3a662f3fbf1c3ddb17',
+  :iso_file => "ubuntu-12.04.4-server-amd64.iso",
+  :iso_src => "http://releases.ubuntu.com/12.04/ubuntu-12.04.4-server-amd64.iso",
+  :iso_md5 => 'e83adb9af4ec0a039e6a5c6e145a34de',
   :iso_download_timeout => "1000",
   :boot_wait => "4",
   :boot_cmd_sequence => [
