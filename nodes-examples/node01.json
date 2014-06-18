@@ -1,0 +1,49 @@
+{
+  "run_list": [
+    "recipe[ssd]",
+    "recipe[hosts]",
+    "recipe[base]",
+    "recipe[time]",
+    "role[collectd_graphite]",
+    "role[elasticsearch]",
+    "recipe[ruby]",
+    "recipe[app::unicorn]",
+    "recipe[app::sidekiq]",
+    "recipe[app::metrics]"
+    "recipe[app::git-daemon]",
+    "recipe[iptables]"
+  ],
+
+  "app": {
+    "nodes": ["node01", "node02", "node03", "node04", "node05", "node06",
+              "node07", "node08", "node09", "node10", "node11", "node12",
+              "node13", "node14", "node15", "node16"],
+    "unicorn": {
+      "user": "username",
+      "password": "password"
+    }
+  },
+
+  "elasticsearch": {
+    "nginx": { "users": [{"username": "username", "password": "password"}] },
+    "discovery.zen.ping.unicast.hosts": ["node01", "node02", "node03", "node04", "node05", "node06",
+                                         "node07", "node08", "node09", "node10", "node11", "node12",
+                                         "node13", "node14", "node15", "node16"],
+    "allocated_memory": "6144m"
+  },
+
+  "iptables": {
+    "services": {
+      "nginx": 80,
+      "elasticsearch": 8080,
+      "git_daemon": 9418
+    }
+  },
+
+  "set_fqdn": "node01",
+  "hosts": {
+    "monitor redis": "IP_monitor",
+    "node01": "IP_node01",
+    "node02": "IP_node02"
+  }
+}

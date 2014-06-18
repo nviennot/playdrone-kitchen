@@ -1,0 +1,31 @@
+{
+  "run_list": [
+    "recipe[ssd]",
+    "recipe[hosts]",
+    "recipe[base]",
+    "recipe[time]",
+    "role[graphite]",
+    "role[redis]",
+    "recipe[iptables]"
+  ],
+
+  "apache_auth": [{
+    "htpasswd_file": "/etc/apache2/htpasswd",
+    "htaccess_file": "/srv/graphite/webapp/.htaccess",
+    "user":     "username",
+    "password": "password"
+  }],
+
+  "iptables": {
+    "services": {
+      "apache": 80
+    }
+  },
+
+  "set_fqdn": "monitor",
+  "hosts": {
+    "monitor redis": "IP_monitor",
+    "node01": "IP_node01",
+    "node02": "IP_node02"
+  }
+}
