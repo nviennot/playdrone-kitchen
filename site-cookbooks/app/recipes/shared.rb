@@ -1,3 +1,5 @@
+package "cmake"
+
 directory "#{node[:app][:app_path]}/shared" do
   recursive true
 end

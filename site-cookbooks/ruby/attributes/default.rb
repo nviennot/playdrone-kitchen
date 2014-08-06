@@ -18,9 +18,8 @@ default[:rvm][:rvmrc] = {
   'rvm_project_rvmrc'             => 1,
   'rvm_gemset_create_on_use_flag' => 1,
   'rvm_trust_rvmrcs_flag'         => 1,
-  'RUBY_HEAP_MIN_SLOTS'           => 1000000,
-  'RUBY_HEAP_SLOTS_INCREMENT'     => 1000000,
-  'RUBY_HEAP_SLOTS_GROWTH_FACTOR' => 1,
-  'RUBY_GC_MALLOC_LIMIT'          => 100000000,
-  'RUBY_HEAP_FREE_MIN'            => 500000,
+  # 'RUBY_GC_MALLOC_LIMIT'          => 256000000,
+  # 'RUBY_HEAP_MIN_SLOTS'           => 600000,
+  # 'RUBY_HEAP_SLOTS_INCREMENT'     => 200000,
+  # 'RUBY_HEAP_FREE_MIN'            => 100000,
 }
