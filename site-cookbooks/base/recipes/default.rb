@@ -13,18 +13,18 @@ known_hosts = [
   '|1|+sXobrUxR484VL5WD4TPCsldCHI=|7tWWhHBVaaS9BH2OmghavNXb0j8= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
 ]
 
-user_account 'deploy' do
-  uid 2000
-  uid 2000
-  ssh_keys authorized_keys
-  # TODO add github known host
-end
+# user_account 'deploy' do
+  # uid 2000
+  # uid 2000
+  # ssh_keys authorized_keys
+  # # TODO add github known host
+# end
 
 # Not using the sudo cookbook, it wants to use the sudoers.d directory
-execute "add deploy to sudoers" do
-  command "chmod +w /etc/sudoers && echo 'deploy ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && chmod -w /etc/sudoers"
-  not_if "grep '^deploy ' /etc/sudoers"
-end
+# execute "add deploy to sudoers" do
+  # command "chmod +w /etc/sudoers && echo 'deploy ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && chmod -w /etc/sudoers"
+  # not_if "grep '^deploy ' /etc/sudoers"
+# end
 
 directory "/root/.ssh" do
   recursive true

@@ -1,4 +1,5 @@
 client_max_body_size 20M;
+types_hash_max_size 2048;
 
 upstream unicorn {
   server unix:<%= @app_path %>/shared/pids/unicorn.sock fail_timeout=0;

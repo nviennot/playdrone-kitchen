@@ -12,7 +12,7 @@ ruby_block "add users to unicorn passwords file" do
   block do
     require 'webrick/httpauth/htpasswd'
     @htpasswd = WEBrick::HTTPAuth::Htpasswd.new('/etc/nginx/unicorn-htpasswd')
-    @htpasswd.set_passwd('Google Play With Me', node[:app][:unicorn][:user], node[:app][:unicorn][:password])
+    @htpasswd.set_passwd('PlayDrone', node[:app][:unicorn][:user], node[:app][:unicorn][:password])
     @htpasswd.flush
   end
 end

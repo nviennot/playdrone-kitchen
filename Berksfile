@@ -1,9 +1,9 @@
-site :opscode
+source "https://api.berkshelf.com"
 
 cookbook 'ntp'
 cookbook "elasticsearch"
-cookbook "java",     :git => 'git://github.com/sroccaserra/java.git'
-cookbook "graphite", :git => 'git://github.com/nviennot/cookbook-graphite.git'
+cookbook "java"
+cookbook "graphite", :git => 'git://github.com/hw-cookbooks/graphite.git'
 cookbook "collectd", :git => 'git://github.com/coderanger/chef-collectd.git'
 cookbook "statsd",   :git => 'git://github.com/hectcastro/chef-statsd.git'
 cookbook 'rvm',      :git => 'git://github.com/fnichol/chef-rvm.git'
@@ -17,7 +17,7 @@ cookbook 'ssd',               :path => 'site-cookbooks/ssd'
 cookbook 'mongodb',           :path => 'site-cookbooks/mongodb'
 cookbook 'glusterfs',         :path => 'site-cookbooks/glusterfs'
 cookbook 'collectd_graphite', :path => 'site-cookbooks/collectd_graphite'
-cookbook 'oracle_jdk_7',      :path => 'site-cookbooks/oracle_jdk_7'
+cookbook 'oracle_jdk_8',      :path => 'site-cookbooks/oracle_jdk_8'
 cookbook 'ruby',              :path => 'site-cookbooks/ruby'
 cookbook 'apache_auth',       :path => 'site-cookbooks/apache_auth'
 cookbook 'iptables',          :path => 'site-cookbooks/iptables'

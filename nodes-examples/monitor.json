@@ -4,7 +4,7 @@
     "recipe[hosts]",
     "recipe[base]",
     "recipe[time]",
-    "role[graphite]",
+    "role[monitoring_server]",
     "role[redis]",
     "recipe[iptables]"
   ],

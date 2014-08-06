@@ -1,7 +1,7 @@
-name "graphite"
+name "monitoring_server"
 run_list "recipe[apache2]",
          "recipe[graphite]",
-         "recipe[graphite::carbon_upstart]",
+         "recipe[graphite::carbon_cache_upstart]",
          "recipe[apache_auth]",
          "recipe[statsd]"
 
