@@ -30,10 +30,10 @@ directory "/root/.ssh" do
   recursive true
 end
 
-file "/root/.ssh/authorized_keys" do
-  content authorized_keys.join("\n")
-  mode 0644
-end
+# file "/root/.ssh/authorized_keys" do
+  # content authorized_keys.join("\n")
+  # mode 0644
+# end
 
 file "/root/.ssh/known_hosts" do
   content known_hosts.join("\n")

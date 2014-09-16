@@ -8,6 +8,10 @@ directory '/srv/scratch' do
   recursive true
 end
 
+directory '/srv/s3' do
+  recursive true
+end
+
 mount '/srv/scratch' do
   fstype 'tmpfs'
   device 'tmpfs'
